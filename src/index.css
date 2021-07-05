@@ -68,6 +68,54 @@ body {
     /* rtl:remove */
     letter-spacing: -.05rem;
   }
+
+
+  .hidden{
+    display: none;
+  }
+
+  .link{
+    text-decoration: none;
+  }
+
+  .link:hover{
+    text-decoration: underline;
+  }
+
+  .link--register{
+    margin: 1rem 0;
+  }
+
+  .form-signin {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    margin: auto;
+  }
+
+  .form-control{
+    margin: .5rem 0;
+  }
+  
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
   
   
   /* RESPONSIVE CSS

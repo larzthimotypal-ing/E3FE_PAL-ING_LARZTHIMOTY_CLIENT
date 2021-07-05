@@ -7,18 +7,21 @@ import Login from './components/login/Login'
 
 import MemberContext from './context/MemberContext'
 import InviteContext from "./context/InviteContext";
+import {useState, useEffect} from 'react'
 
 import {
   BrowserRouter as Router, Switch, Route
 } from 'react-router-dom';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+
   return (
     <div className="App">
       <Router>
         <MemberContext>
           <InviteContext>
-            <Navbar />
+            <Navbar loggedIn = {loggedIn}/>
             <Banner />
             <Switch>
               <Route exact path='/member'>
@@ -27,9 +30,8 @@ function App() {
               <Route exact path='/register'>
                 <Register/>
               </Route>
-              <Route exact path='/login'>
-                <Login/>
-              </Route>
+              <Route exact path='/login' 
+              render={(props) => <Login{...props} setLoggedIn={setLoggedIn}/>}/>
             </Switch>
           </InviteContext>
         </MemberContext>

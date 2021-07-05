@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Redirect, useHistory } from "react-router-dom";
 
 const Register = () => {
    /** setting up states that we will use to track input values*/
@@ -9,11 +9,9 @@ const Register = () => {
    const [password, setPassword] = useState("");
    /** a state used to track if we are gonna redirect to another page*/
    const [redirect, setRedirect] = useState(false);
-
-   useEffect(() => {
-     if(redirect === true)
-     return <Redirect to ='/login'/>
-   }, [redirect])
+  
+    let history = useHistory();
+  
 
    const apiUrl = "http://localhost:42761/api/auth/register";
 
@@ -33,12 +31,11 @@ const Register = () => {
            
            
          fetch(apiUrl, options)
-         .then(res => res.json())
+         .then(res => {
+           res.json()
+           history.push("/login")
+          })
          .catch(err => console.error(err));
-
-       //redirecting if registration is successful
-       
-       
 
    }
 

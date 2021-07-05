@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { InviteContext } from '../context/InviteContext';
 import { MemberContext } from '../context/MemberContext';
 
@@ -6,13 +6,21 @@ import {
     BrowserRouter as Router,
     Link
  } from 'react-router-dom';
-
-const Navbar = (props) => {
+    
+    const Navbar = (props) => {
 
     const { count: memberCount } = useContext(MemberContext);
     const { invites } = useContext(InviteContext);
 
+    const [navConfig, setNavConfig] = useState(["hidden",""])
 
+    useEffect(() => {
+        if(props.loggedIn === true){
+            setNavConfig(["", "hidden"])
+        }else{
+            setNavConfig(["hidden", ""])
+        }
+    }, [props.loggedIn])
 
 
     return (
@@ -35,11 +43,11 @@ const Navbar = (props) => {
                                 <li className="nav-item">
                                     <Link to='/invites' className="nav-link" >Invites <span className="badge rounded-pill bg-primary"><small>{invites.length}</small></span></Link>
                                 </li>
-                                {/* <li className="nav-item">
-                                    <a className="nav-link disabled" href="/#" tabIndex="-1" aria-disabled="true">Sign out</a>
-                                </li> */}
                                 <li className="nav-item">
-                                    <Link to='/login' className="nav-link" >Login </Link>
+                                    <a className={`nav-link ${navConfig[0]}`} href="/#">Sign out</a>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to='/login' className={`nav-link ${navConfig[1]}`} >Login</Link>
                                 </li>
                                 
                             </ul>
